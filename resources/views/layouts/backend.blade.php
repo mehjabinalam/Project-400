@@ -101,6 +101,13 @@
                 }
             });
 
+            @if(session()->has('success'))
+                Toast.fire({
+                    icon: 'success',
+                    title:'{{ session()->get('success') }}'
+                });
+            @endif
+
             window.addEventListener('alert',({detail:{type,message}})=>{
                 Toast.fire({
                     icon:type,

@@ -12,11 +12,21 @@
                     </p>
                 </a>
             </li>
+            @can('isAdmin')
+                <li class="nav-item">
+                    <a href="{{ route('categories.index') }}" class="nav-link {{ checkActiveUrl('categories*') }}">
+                        <i class="nav-icon fa fa-list-alt"></i>
+                        <p>
+                            Category
+                        </p>
+                    </a>
+                </li>
+            @endcan
             <li class="nav-item">
-                <a href="{{ route('categories.index') }}" class="nav-link {{ checkActiveUrl('categories*') }}">
-                    <i class="nav-icon fa fa-list-alt"></i>
+                <a href="{{ route('books.index') }}" class="nav-link {{ checkActiveUrl('books*') }}">
+                    <i class="nav-icon fa fa-book"></i>
                     <p>
-                        Category
+                        Book
                     </p>
                 </a>
             </li>

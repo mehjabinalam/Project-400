@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\BookController;
 use App\Http\Controllers\Category\CategoryController;
 use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +25,9 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::group([], function() {
-   Route::get('categories', [CategoryController::class, 'index'])->name('categories.index');
+Route::group(['middleware' => ['auth']], function() {
+    Route::group(['middleware' => ['can:isAdmin']], function() {
+        Route::get('categories', [CategoryController::class, 'index'])->name('categories.index');
+    });
+    Route::resource('books', BookController::class)->except('show');
 });
